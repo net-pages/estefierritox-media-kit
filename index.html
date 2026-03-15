@@ -826,6 +826,72 @@ section {
 .social-card:hover .social-card-arrow { transform: translateX(4px); }
 
 /* ═══════════════════════════════════════════
+   AMAZON STOREFRONT
+   ═══════════════════════════════════════════ */
+.amazon-grid {
+  max-width: 520px;
+  margin: 0 auto;
+}
+.amazon-card {
+  position: relative;
+  background: var(--bg-card);
+  border: 1px solid var(--glass-border);
+  border-radius: var(--radius-lg);
+  padding: 36px 40px;
+  text-decoration: none;
+  color: inherit;
+  display: flex;
+  align-items: center;
+  gap: 24px;
+  backdrop-filter: blur(10px);
+  transition: transform 0.4s var(--ease-out-expo), box-shadow 0.4s;
+  overflow: hidden;
+}
+.amazon-card::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: var(--gradient-glow);
+  opacity: 0;
+  transition: opacity 0.4s;
+}
+.amazon-card:hover { transform: translateY(-4px); box-shadow: var(--shadow-hover); }
+.amazon-card:hover::before { opacity: 1; }
+.amazon-card-icon {
+  width: 60px; height: 60px;
+  border-radius: 18px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.6rem;
+  flex-shrink: 0;
+  background: var(--gradient-girly);
+  color: white;
+  transition: transform 0.4s var(--ease-spring);
+  position: relative;
+  z-index: 1;
+}
+.amazon-card:hover .amazon-card-icon { transform: scale(1.1) rotate(-5deg); }
+.amazon-card-info { flex: 1; position: relative; z-index: 1; }
+.amazon-card-name { font-weight: 600; font-size: 1.05rem; margin-bottom: 3px; }
+.amazon-card-handle { font-size: 0.82rem; color: var(--text-muted); }
+.amazon-card-arrow {
+  font-size: 0.95rem;
+  color: var(--accent-pink);
+  transition: transform 0.3s;
+  position: relative;
+  z-index: 1;
+}
+.amazon-card:hover .amazon-card-arrow { transform: translateX(4px); }
+
+@media (max-width: 768px) {
+  .amazon-card { padding: 24px; gap: 16px; }
+  .amazon-card-icon { width: 48px; height: 48px; font-size: 1.2rem; border-radius: 14px; }
+  .amazon-card-name { font-size: 0.9rem; }
+  .amazon-card-handle { font-size: 0.74rem; }
+}
+
+/* ═══════════════════════════════════════════
    PORTFOLIO
    ═══════════════════════════════════════════ */
 .portfolio {
@@ -1218,6 +1284,7 @@ footer {
     <li><a href="#servicios" onclick="closeNav()">Servicios</a></li>
     <li><a href="#redes" onclick="closeNav()">Redes</a></li>
     <li><a href="#marcas" onclick="closeNav()">Marcas</a></li>
+    <li><a href="#amazon" onclick="closeNav()">Shop</a></li>
     <li><a href="#contacto" onclick="closeNav()">Contacto</a></li>
   </ul>
   <button class="nav-toggle" id="navToggle" onclick="toggleNav()" aria-label="Menu">
@@ -1459,6 +1526,27 @@ footer {
           <div class="social-card-handle">@estefierritox</div>
         </div>
         <div class="social-card-arrow"><i class="fas fa-arrow-right"></i></div>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ AMAZON STOREFRONT ═══ -->
+<section id="amazon">
+  <div class="section-container">
+    <div class="amazon-header reveal">
+      <div class="section-label"><span class="dot"></span> Shop</div>
+      <h2 class="section-title">Mis <em>indispensables</em></h2>
+      <p class="section-subtitle">Productos que uso y amo — Mis indispensables del hogar y de mi oficina!</p>
+    </div>
+    <div class="amazon-grid">
+      <a href="https://www.amazon.com/shop/estefierritox" target="_blank" rel="noopener" class="amazon-card reveal reveal-delay-1">
+        <div class="amazon-card-icon"><i class="fab fa-amazon"></i></div>
+        <div class="amazon-card-info">
+          <div class="amazon-card-name">Amazon Storefront</div>
+          <div class="amazon-card-handle">Mi selección de favoritos</div>
+        </div>
+        <div class="amazon-card-arrow"><i class="fas fa-arrow-right"></i></div>
       </a>
     </div>
   </div>
