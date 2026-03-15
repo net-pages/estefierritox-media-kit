@@ -1122,20 +1122,6 @@ footer {
   background: var(--gradient-girly);
   flex-shrink: 0;
 }
-.brands-count {
-  text-align: center;
-  margin-top: 40px;
-  font-family: var(--font-display);
-  font-size: 1.1rem;
-  color: var(--text-secondary);
-  font-style: italic;
-}
-.brands-count strong {
-  background: var(--gradient-girly);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  font-size: 1.4rem;
-}
 
 /* ═══════════════════════════════════════════
    WAY OF WORK
@@ -1189,6 +1175,22 @@ footer {
 }
 @media (max-width: 768px) {
   .wayofwork-grid { grid-template-columns: 1fr; }
+
+  /* Scroll progress - ocultar en móvil */
+  .scroll-progress { display: none; }
+
+  /* Hero buttons - asegurar clickeabilidad */
+  .hero-cta-group { position: relative; z-index: 2; }
+
+  /* Floating CTA - ajustar en móvil */
+  .floating-cta { padding: 12px 20px; font-size: 0.8rem; bottom: 20px; right: 16px; }
+
+  /* Social cards - 1 columna en móvil */
+  .social-grid { grid-template-columns: 1fr; }
+  .social-card { padding: 20px; gap: 14px; }
+  .social-card-icon { width: 44px; height: 44px; font-size: 1.1rem; }
+  .social-card-name { font-size: 0.85rem; }
+  .social-card-handle { font-size: 0.72rem; }
 }
 </style>
 </head>
@@ -1545,9 +1547,6 @@ footer {
       <div class="brand-pill reveal reveal-delay-3"><img src="logos/creative-staff.png" alt="Creative Staff"> Creative Staff</div>
       <div class="brand-pill reveal reveal-delay-1"><img src="logos/uva-women.webp" alt="Uva Women"> Uva Women</div>
       <div class="brand-pill reveal reveal-delay-1"><img src="logos/adidas.png" alt="Adidas"> Adidas</div>
-    </div>
-    <div class="brands-count reveal">
-      <strong>+14</strong> marcas han trabajado conmigo
     </div>
   </div>
 </section>
