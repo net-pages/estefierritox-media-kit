@@ -157,7 +157,7 @@ nav {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  transition: all 0.4s;
+  transition: background 0.4s, padding 0.4s, box-shadow 0.4s;
 }
 nav.scrolled {
   background: rgba(253,246,240,0.85);
@@ -218,8 +218,7 @@ nav.scrolled {
   .nav-links {
     position: fixed;
     inset: 0;
-    background: rgba(253,246,240,0.97);
-    backdrop-filter: blur(30px);
+    background: rgba(253,246,240,1);
     flex-direction: column;
     justify-content: center;
     align-items: center;
@@ -1230,6 +1229,9 @@ footer {
   .scroll-progress { display: none; }
   .hero-scroll-indicator { display: none; }
 
+  /* Blobs - ocultar en móvil para evitar blur costoso */
+  .bg-blob { display: none; }
+
   /* Hero buttons - asegurar clickeabilidad */
   .hero-cta-group { position: relative; z-index: 2; }
 
@@ -1338,7 +1340,7 @@ footer {
         </div>
         <div class="platform-stats">
           <div class="platform-stat">
-            <div class="platform-stat-number" data-metric-id="ig-followers" data-target="12.1" data-suffix="K" data-decimals="1">0</div>
+            <div class="platform-stat-number" data-metric-id="ig-followers" data-target="12.3" data-suffix="K" data-decimals="1">0</div>
             <div class="platform-stat-label">Seguidores</div>
           </div>
           <div class="platform-stat">
@@ -1391,16 +1393,16 @@ footer {
     <div class="about-layout">
       <div class="about-gallery reveal">
         <div class="about-gallery-img">
-          <img src="fotos-estefierritox/74085711-664E-4EAA-89EC-4A41B477C2F3.JPEG" alt="Estefierritox">
+          <img src="fotos-estefierritox/74085711-664E-4EAA-89EC-4A41B477C2F3.JPEG" alt="Estefierritox" loading="lazy">
         </div>
         <div class="about-gallery-img">
-          <img src="fotos-estefierritox/IMG_4923.jpg" alt="Estefierritox">
+          <img src="fotos-estefierritox/IMG_4923.jpg" alt="Estefierritox" loading="lazy">
         </div>
         <div class="about-gallery-img">
-          <img src="fotos-estefierritox/IMG_1446.jpg" alt="Estefierritox">
+          <img src="fotos-estefierritox/IMG_1446.jpg" alt="Estefierritox" loading="lazy">
         </div>
         <div class="about-gallery-img">
-          <img src="fotos-estefierritox/IMG_4922.jpg" alt="Estefierritox">
+          <img src="fotos-estefierritox/IMG_4922.jpg" alt="Estefierritox" loading="lazy">
         </div>
       </div>
       <div class="about-text">
@@ -1481,7 +1483,7 @@ footer {
       <a href="https://instagram.com/estefierritox" target="_blank" class="social-card ig reveal reveal-delay-1">
         <div class="social-card-icon"><i class="fab fa-instagram"></i></div>
         <div class="social-card-info">
-          <div class="social-card-name" data-metric-id="ig-social-text">Instagram — 12.1K seguidores</div>
+          <div class="social-card-name" data-metric-id="ig-social-text">Instagram — 12.3K seguidores</div>
           <div class="social-card-handle">@estefierritox</div>
         </div>
         <div class="social-card-arrow"><i class="fas fa-arrow-right"></i></div>
@@ -1529,7 +1531,7 @@ footer {
     </div>
     <div class="portfolio-grid">
       <div class="portfolio-item reveal reveal-delay-1">
-        <img src="fotos-estefierritox/Estefa (2).JPG" alt="Contenido Estefierritox">
+        <img src="fotos-estefierritox/Estefa (2).JPG" alt="Contenido Estefierritox" loading="lazy">
         <div class="portfolio-overlay">
           <span class="portfolio-brand">Opinión y storytelling</span>
           <span class="portfolio-campaign">Historias personales, experiencias y opiniones sobre productos, situaciones o temas del día a día.</span>
@@ -1537,7 +1539,7 @@ footer {
         </div>
       </div>
       <div class="portfolio-item reveal reveal-delay-2">
-        <img src="fotos-estefierritox/IMG_4922.jpg" alt="Contenido Estefierritox">
+        <img src="fotos-estefierritox/IMG_4922.jpg" alt="Contenido Estefierritox" loading="lazy">
         <div class="portfolio-overlay">
           <span class="portfolio-brand">Recomendaciones lifestyle</span>
           <span class="portfolio-campaign">Productos, servicios o hábitos que uso y recomiendo dentro de mi estilo de vida.</span>
@@ -1545,7 +1547,7 @@ footer {
         </div>
       </div>
       <div class="portfolio-item reveal reveal-delay-3">
-        <img src="fotos-estefierritox/74085711-664E-4EAA-89EC-4A41B477C2F3.JPEG" alt="Contenido Estefierritox">
+        <img src="fotos-estefierritox/74085711-664E-4EAA-89EC-4A41B477C2F3.JPEG" alt="Contenido Estefierritox" loading="lazy">
         <div class="portfolio-overlay">
           <span class="portfolio-brand">Contenido casual / relatable</span>
           <span class="portfolio-campaign">Contenido espontáneo con el que mi audiencia se identifica fácilmente: pensamientos, situaciones cotidianas, humor o trends.</span>
@@ -1553,7 +1555,7 @@ footer {
         </div>
       </div>
       <div class="portfolio-item reveal reveal-delay-1">
-        <img src="fotos-estefierritox/IMG_4923.jpg" alt="Contenido Estefierritox">
+        <img src="fotos-estefierritox/IMG_4923.jpg" alt="Contenido Estefierritox" loading="lazy">
         <div class="portfolio-overlay">
           <span class="portfolio-brand">Integración natural de marca</span>
           <span class="portfolio-campaign">Productos o servicios integrados de manera orgánica en mi contenido</span>
@@ -1561,7 +1563,7 @@ footer {
         </div>
       </div>
       <div class="portfolio-item reveal reveal-delay-2">
-        <img src="fotos-estefierritox/IMG_0209.jpg" alt="Contenido Estefierritox">
+        <img src="fotos-estefierritox/IMG_0209.jpg" alt="Contenido Estefierritox" loading="lazy">
         <div class="portfolio-overlay">
           <span class="portfolio-brand">Mascotas</span>
           <span class="portfolio-campaign">Contenido sobre mi vida con mis perros Max & Arya, sus cuidados y perronalidades.</span>
@@ -1569,7 +1571,7 @@ footer {
         </div>
       </div>
       <div class="portfolio-item reveal reveal-delay-3">
-        <img src="fotos-estefierritox/IMG_1446.jpg" alt="Contenido Estefierritox">
+        <img src="fotos-estefierritox/IMG_1446.jpg" alt="Contenido Estefierritox" loading="lazy">
         <div class="portfolio-overlay">
           <span class="portfolio-brand">Hogar</span>
           <span class="portfolio-campaign">Contenido relacionado con mis espacios, organización, decoración y mi vida en casa siendo una jóven adulta recién independizada.</span>
@@ -1589,20 +1591,20 @@ footer {
       <p class="section-subtitle">Experiencia trabajando con marcas nacionales e internacionales de distintos sectores.</p>
     </div>
     <div class="brands-grid">
-      <div class="brand-pill reveal reveal-delay-1"><img src="logos/jose-cuervo.png" alt="José Cuervo"> José Cuervo</div>
-      <div class="brand-pill reveal reveal-delay-1"><img src="logos/la-constancia.png" alt="La Constancia"> La Constancia</div>
-      <div class="brand-pill reveal reveal-delay-2"><img src="logos/binner.svg" alt="Binner"> Binner</div>
-      <div class="brand-pill reveal reveal-delay-2"><img src="logos/nequi.png" alt="Nequi"> Nequi</div>
-      <div class="brand-pill reveal reveal-delay-3"><img src="logos/konfyt.png" alt="Konfyt"> Konfyt</div>
-      <div class="brand-pill reveal reveal-delay-3"><img src="logos/universal.png" alt="Universal"> Universal</div>
-      <div class="brand-pill reveal reveal-delay-1"><img src="logos/nude.svg" alt="Nude"> Nude</div>
-      <div class="brand-pill reveal reveal-delay-1"><img src="logos/walaky.png" alt="Walaky"> Walaky</div>
-      <div class="brand-pill reveal reveal-delay-2"><img src="logos/liso-saludable.png" alt="Liso Saludable"> Liso Saludable</div>
-      <div class="brand-pill reveal reveal-delay-2"><img src="logos/pomys.png" alt="Pomys"> Pomys</div>
-      <div class="brand-pill reveal reveal-delay-3"><img src="logos/bianco-odontologos.png" alt="Bianco Odontólogos"> Bianco Odontólogos</div>
-      <div class="brand-pill reveal reveal-delay-3"><img src="logos/creative-staff.png" alt="Creative Staff"> Creative Staff</div>
-      <div class="brand-pill reveal reveal-delay-1"><img src="logos/uva-women.webp" alt="Uva Women"> Uva Women</div>
-      <div class="brand-pill reveal reveal-delay-1"><img src="logos/adidas.png" alt="Adidas"> Adidas</div>
+      <div class="brand-pill reveal reveal-delay-1"><img src="logos/jose-cuervo.png" alt="José Cuervo" loading="lazy"> José Cuervo</div>
+      <div class="brand-pill reveal reveal-delay-1"><img src="logos/la-constancia.png" alt="La Constancia" loading="lazy"> La Constancia</div>
+      <div class="brand-pill reveal reveal-delay-2"><img src="logos/binner.svg" alt="Binner" loading="lazy"> Binner</div>
+      <div class="brand-pill reveal reveal-delay-2"><img src="logos/nequi.png" alt="Nequi" loading="lazy"> Nequi</div>
+      <div class="brand-pill reveal reveal-delay-3"><img src="logos/konfyt.png" alt="Konfyt" loading="lazy"> Konfyt</div>
+      <div class="brand-pill reveal reveal-delay-3"><img src="logos/universal.png" alt="Universal" loading="lazy"> Universal</div>
+      <div class="brand-pill reveal reveal-delay-1"><img src="logos/nude.svg" alt="Nude" loading="lazy"> Nude</div>
+      <div class="brand-pill reveal reveal-delay-1"><img src="logos/walaky.png" alt="Walaky" loading="lazy"> Walaky</div>
+      <div class="brand-pill reveal reveal-delay-2"><img src="logos/liso-saludable.png" alt="Liso Saludable" loading="lazy"> Liso Saludable</div>
+      <div class="brand-pill reveal reveal-delay-2"><img src="logos/pomys.png" alt="Pomys" loading="lazy"> Pomys</div>
+      <div class="brand-pill reveal reveal-delay-3"><img src="logos/bianco-odontologos.png" alt="Bianco Odontólogos" loading="lazy"> Bianco Odontólogos</div>
+      <div class="brand-pill reveal reveal-delay-3"><img src="logos/creative-staff.png" alt="Creative Staff" loading="lazy"> Creative Staff</div>
+      <div class="brand-pill reveal reveal-delay-1"><img src="logos/uva-women.webp" alt="Uva Women" loading="lazy"> Uva Women</div>
+      <div class="brand-pill reveal reveal-delay-1"><img src="logos/adidas.png" alt="Adidas" loading="lazy"> Adidas</div>
     </div>
   </div>
 </section>
@@ -1745,14 +1747,17 @@ footer {
 // ── Consolidated Scroll Handler (single listener, RAF-throttled) ──
 const scrollProgress = document.getElementById('scrollProgress');
 const navbar = document.getElementById('navbar');
+const isMobile = window.matchMedia('(max-width: 768px)').matches;
 let ticking = false;
 
 window.addEventListener('scroll', () => {
   if (!ticking) {
     requestAnimationFrame(() => {
       const scrollY = window.scrollY;
-      const docHeight = document.documentElement.scrollHeight - window.innerHeight;
-      scrollProgress.style.transform = `scaleX(${scrollY / docHeight})`;
+      if (!isMobile) {
+        const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+        scrollProgress.style.transform = `scaleX(${scrollY / docHeight})`;
+      }
       navbar.classList.toggle('scrolled', scrollY > 50);
       ticking = false;
     });
@@ -1775,18 +1780,20 @@ function closeNav() {
   document.getElementById('navLinks').classList.remove('open');
 }
 
-// ── Flower Particles (reduced to 10 for performance) ──
-const particlesContainer = document.getElementById('particles');
-const flowers = ['🌸', '🌼', '🌷', '✿', '❀'];
-const fragment = document.createDocumentFragment();
-for (let i = 0; i < 10; i++) {
-  const p = document.createElement('div');
-  p.className = 'flower-particle';
-  p.textContent = flowers[i % flowers.length];
-  p.style.cssText = `left:${Math.random() * 100}%;animation-duration:${14 + Math.random() * 16}s;animation-delay:${Math.random() * 20}s;font-size:${10 + Math.random() * 10}px`;
-  fragment.appendChild(p);
+// ── Flower Particles (skip on mobile) ──
+if (!window.matchMedia('(max-width: 768px)').matches) {
+  const particlesContainer = document.getElementById('particles');
+  const flowers = ['🌸', '🌼', '🌷', '✿', '❀'];
+  const fragment = document.createDocumentFragment();
+  for (let i = 0; i < 10; i++) {
+    const p = document.createElement('div');
+    p.className = 'flower-particle';
+    p.textContent = flowers[i % flowers.length];
+    p.style.cssText = `left:${Math.random() * 100}%;animation-duration:${14 + Math.random() * 16}s;animation-delay:${Math.random() * 20}s;font-size:${10 + Math.random() * 10}px`;
+    fragment.appendChild(p);
+  }
+  particlesContainer.appendChild(fragment);
 }
-particlesContainer.appendChild(fragment);
 
 // ── Reveal on Scroll ──
 const revealObserver = new IntersectionObserver((entries) => {
