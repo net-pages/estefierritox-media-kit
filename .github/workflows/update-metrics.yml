@@ -23,11 +23,10 @@ jobs:
       - name: Install dependencies
         run: npm ci
 
-      - name: Install Playwright Chromium
-        run: npx playwright install chromium --with-deps
-
       - name: Run metrics update script
         run: npm run update-metrics
+        env:
+          INSTAGRAM_TOKEN: ${{ secrets.INSTAGRAM_TOKEN }}
 
       - name: Check for changes
         id: changes

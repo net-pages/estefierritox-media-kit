@@ -7,7 +7,6 @@
     "update-metrics": "node scripts/update-metrics.mjs"
   },
   "dependencies": {
-    "cheerio": "^1.0.0",
-    "playwright": "^1.52.0"
+    "cheerio": "^1.0.0"
   }
 }

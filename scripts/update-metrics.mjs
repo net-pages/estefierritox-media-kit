@@ -44,78 +44,50 @@ function getCurrentRaw(html, metricId) {
 }
 
 // ── Instagram scraping ──
+// Instagram Graph API (requires INSTAGRAM_TOKEN env var)
+// Set up via: repo Settings → Secrets → INSTAGRAM_TOKEN
 
 async function scrapeInstagram() {
-  // Attempt 1: REST API
-  try {
-    console.log('[IG] Trying REST API...');
-    const res = await fetch(
-      `https://i.instagram.com/api/v1/users/web_profile_info/?username=${USERNAME}`,
-      {
-        headers: {
-          'x-ig-app-id': '936619743392459',
-          'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Safari/537.36',
-          'Accept': '*/*',
-          'Accept-Language': 'en-US,en;q=0.9',
-        },
-      }
-    );
-    if (res.ok) {
-      const json = await res.json();
-      const user = json.data.user;
-      const result = {
-        followers: user.edge_followed_by.count,
-        posts: user.edge_owner_to_timeline_media.count,
-      };
-      console.log(`[IG] API success: ${result.followers} followers, ${result.posts} posts`);
-      return result;
-    }
-    console.warn(`[IG] API returned ${res.status}`);
-  } catch (e) {
-    console.warn('[IG] API failed:', e.message);
+  const token = process.env.INSTAGRAM_TOKEN;
+  if (!token) {
+    console.log('[IG] No INSTAGRAM_TOKEN set — skipping (set up Graph API to enable)');
+    return null;
   }
 
-  // Attempt 2: Playwright fallback
   try {
-    console.log('[IG] Trying Playwright fallback...');
-    const { chromium } = await import('playwright');
-    const browser = await chromium.launch({ headless: true });
-    const page = await browser.newPage();
-    await page.goto(`https://www.instagram.com/${USERNAME}/`, {
-      waitUntil: 'domcontentloaded',
-      timeout: 30000,
-    });
-    await page.waitForTimeout(3000);
-
-    const metaContent = await page.$eval(
-      'meta[property="og:description"]',
-      (el) => el.content
+    console.log('[IG] Trying Graph API...');
+    // First get the IG Business Account ID
+    const pagesRes = await fetch(
+      `https://graph.facebook.com/v21.0/me/accounts?fields=instagram_business_account&access_token=${token}`
     );
-    const followersMatch = metaContent.match(/([\d,.]+[KMkm]?)\s*Followers/i);
-    const postsMatch = metaContent.match(/([\d,.]+)\s*Posts/i);
-
-    await browser.close();
-
-    if (followersMatch) {
-      const followers = parseMetaNumber(followersMatch[1]);
-      const posts = postsMatch ? parseInt(postsMatch[1].replace(/,/g, '')) : null;
-      console.log(`[IG] Playwright success: ${followers} followers, ${posts} posts`);
-      return { followers, posts };
+    const pagesData = await pagesRes.json();
+    const igAccountId = pagesData.data?.[0]?.instagram_business_account?.id;
+    if (!igAccountId) {
+      console.warn('[IG] Could not find Instagram Business Account. Check token permissions.');
+      return null;
     }
+
+    // Fetch profile metrics
+    const profileRes = await fetch(
+      `https://graph.facebook.com/v21.0/${igAccountId}?fields=followers_count,media_count&access_token=${token}`
+    );
+    const profile = await profileRes.json();
+    if (profile.error) {
+      console.warn('[IG] Graph API error:', profile.error.message);
+      return null;
+    }
+
+    const result = {
+      followers: profile.followers_count,
+      posts: profile.media_count,
+    };
+    console.log(`[IG] Graph API success: ${result.followers} followers, ${result.posts} posts`);
+    return result;
   } catch (e) {
-    console.warn('[IG] Playwright failed:', e.message);
+    console.warn('[IG] Graph API failed:', e.message);
   }
 
-  console.error('[IG] All methods failed');
   return null;
-}
-
-function parseMetaNumber(str) {
-  const clean = str.replace(/,/g, '').trim();
-  const lower = clean.toLowerCase();
-  if (lower.endsWith('k')) return parseFloat(lower) * 1000;
-  if (lower.endsWith('m')) return parseFloat(lower) * 1000000;
-  return parseInt(clean);
 }
 
 // ── TikTok scraping ──
@@ -151,41 +123,6 @@ async function scrapeTikTok() {
     console.warn('[TT] HTML fetch: no stats found in page data');
   } catch (e) {
     console.warn('[TT] HTML fetch failed:', e.message);
-  }
-
-  // Attempt 2: Playwright fallback
-  try {
-    console.log('[TT] Trying Playwright fallback...');
-    const { chromium } = await import('playwright');
-    const browser = await chromium.launch({ headless: true });
-    const page = await browser.newPage();
-    await page.goto(`https://www.tiktok.com/@${USERNAME}`, {
-      waitUntil: 'domcontentloaded',
-      timeout: 30000,
-    });
-    await page.waitForTimeout(3000);
-
-    const scriptContent = await page.$eval(
-      '#__UNIVERSAL_DATA_FOR_REHYDRATION__',
-      (el) => el.textContent
-    );
-    await browser.close();
-
-    if (scriptContent) {
-      const data = JSON.parse(scriptContent);
-      const userDetail = data['__DEFAULT_SCOPE__']?.['webapp.user-detail'];
-      const stats = userDetail?.userInfo?.stats;
-      if (stats) {
-        const result = {
-          followers: stats.followerCount,
-          likes: stats.heartCount,
-        };
-        console.log(`[TT] Playwright success: ${result.followers} followers, ${result.likes} likes`);
-        return result;
-      }
-    }
-  } catch (e) {
-    console.warn('[TT] Playwright failed:', e.message);
   }
 
   console.error('[TT] All methods failed');
