@@ -562,39 +562,35 @@ section {
 .platform-handle { font-size: 0.8rem; color: var(--text-secondary); }
 .platform-stats {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
+  grid-template-columns: repeat(2, 1fr);
   gap: 16px;
 }
 .platform-stat {
   background: var(--gradient-soft);
   border-radius: var(--radius-sm);
-  padding: 18px;
+  padding: 24px 20px;
   text-align: center;
 }
 .platform-stat-number {
   font-family: var(--font-display);
-  font-size: 1.8rem;
+  font-size: 2.2rem;
   font-weight: 700;
   color: var(--accent-rose);
   line-height: 1;
-  margin-bottom: 4px;
+  margin-bottom: 6px;
 }
 .platform-stat-label {
-  font-size: 0.72rem;
+  font-size: 0.78rem;
   color: var(--text-secondary);
   font-weight: 500;
-}
-.platform-stat-trend {
-  font-size: 0.68rem;
-  color: #4caf50;
-  font-weight: 600;
-  margin-top: 4px;
 }
 
 .metrics-highlights {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
+  grid-template-columns: repeat(2, 1fr);
   gap: 16px;
+  max-width: 700px;
+  margin: 0 auto;
 }
 .highlight-card {
   background: rgba(255,255,255,0.85);
@@ -630,15 +626,15 @@ section {
 }
 .highlight-number {
   font-family: var(--font-display);
-  font-size: 2rem;
+  font-size: 2.6rem;
   font-weight: 700;
-  margin-bottom: 2px;
+  margin-bottom: 4px;
   background: var(--gradient-girly);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
 }
 .highlight-label {
-  font-size: 0.8rem;
+  font-size: 0.85rem;
   color: var(--text-secondary);
 }
 
@@ -1342,16 +1338,12 @@ footer {
         </div>
         <div class="platform-stats">
           <div class="platform-stat">
-            <div class="platform-stat-number" data-target="12.1" data-suffix="K" data-decimals="1">0</div>
+            <div class="platform-stat-number" data-metric-id="ig-followers" data-target="12.1" data-suffix="K" data-decimals="1">0</div>
             <div class="platform-stat-label">Seguidores</div>
           </div>
           <div class="platform-stat">
-            <div class="platform-stat-number" data-target="188" data-suffix="">0</div>
+            <div class="platform-stat-number" data-metric-id="ig-posts" data-target="188" data-suffix="" data-decimals="0">0</div>
             <div class="platform-stat-label">Publicaciones</div>
-          </div>
-          <div class="platform-stat">
-            <div class="platform-stat-number" data-target="10" data-suffix="K" data-decimals="0">0</div>
-            <div class="platform-stat-label">Views promedio</div>
           </div>
         </div>
       </div>
@@ -1367,16 +1359,12 @@ footer {
         </div>
         <div class="platform-stats">
           <div class="platform-stat">
-            <div class="platform-stat-number" data-target="77.7" data-suffix="K" data-decimals="1">0</div>
+            <div class="platform-stat-number" data-metric-id="tt-followers" data-target="78" data-suffix="K" data-decimals="0">0</div>
             <div class="platform-stat-label">Seguidores</div>
           </div>
           <div class="platform-stat">
-            <div class="platform-stat-number" data-target="6.4" data-suffix="M" data-decimals="1">0</div>
+            <div class="platform-stat-number" data-metric-id="tt-likes" data-target="6.4" data-suffix="M" data-decimals="2">0</div>
             <div class="platform-stat-label">Me gusta totales</div>
-          </div>
-          <div class="platform-stat">
-            <div class="platform-stat-number" data-target="12" data-suffix="K" data-decimals="0">0</div>
-            <div class="platform-stat-label">Views promedio</div>
           </div>
         </div>
       </div>
@@ -1384,18 +1372,13 @@ footer {
 
     <div class="metrics-highlights">
       <div class="highlight-card reveal reveal-delay-1">
-        <div class="highlight-icon"><i class="fas fa-eye"></i></div>
-        <div class="highlight-number" data-target="1.47" data-suffix="M" data-decimals="2">0</div>
-        <div class="highlight-label">Alcance total Instagram</div>
-      </div>
-      <div class="highlight-card reveal reveal-delay-2">
         <div class="highlight-icon"><i class="fas fa-users"></i></div>
-        <div class="highlight-number" data-target="89.8" data-suffix="K" data-decimals="1">0</div>
+        <div class="highlight-number" data-metric-id="combined-followers" data-target="90" data-suffix="K" data-decimals="0">0</div>
         <div class="highlight-label">Seguidores combinados</div>
       </div>
-      <div class="highlight-card reveal reveal-delay-3">
+      <div class="highlight-card reveal reveal-delay-2">
         <div class="highlight-icon"><i class="fas fa-heart"></i></div>
-        <div class="highlight-number" data-target="6.4" data-suffix="M" data-decimals="1">0</div>
+        <div class="highlight-number" data-metric-id="tt-total-likes" data-target="6.4" data-suffix="M" data-decimals="2">0</div>
         <div class="highlight-label">Likes totales en TikTok</div>
       </div>
     </div>
@@ -1498,7 +1481,7 @@ footer {
       <a href="https://instagram.com/estefierritox" target="_blank" class="social-card ig reveal reveal-delay-1">
         <div class="social-card-icon"><i class="fab fa-instagram"></i></div>
         <div class="social-card-info">
-          <div class="social-card-name">Instagram — 12.1K seguidores</div>
+          <div class="social-card-name" data-metric-id="ig-social-text">Instagram — 12.1K seguidores</div>
           <div class="social-card-handle">@estefierritox</div>
         </div>
         <div class="social-card-arrow"><i class="fas fa-arrow-right"></i></div>
@@ -1506,7 +1489,7 @@ footer {
       <a href="https://www.tiktok.com/@estefierritox" target="_blank" class="social-card tt reveal reveal-delay-2">
         <div class="social-card-icon"><i class="fab fa-tiktok"></i></div>
         <div class="social-card-info">
-          <div class="social-card-name">TikTok — 77.7K seguidores</div>
+          <div class="social-card-name" data-metric-id="tt-social-text">TikTok — 78K seguidores</div>
           <div class="social-card-handle">@estefierritox</div>
         </div>
         <div class="social-card-arrow"><i class="fas fa-arrow-right"></i></div>

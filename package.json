@@ -1,0 +1,13 @@
+{
+  "name": "estefierritox-media-kit",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "update-metrics": "node scripts/update-metrics.mjs"
+  },
+  "dependencies": {
+    "cheerio": "^1.0.0",
+    "playwright": "^1.52.0"
+  }
+}
