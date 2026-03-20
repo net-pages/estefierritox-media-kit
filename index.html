@@ -90,6 +90,7 @@ body {
   transition: transform 0.6s var(--ease-out-expo), opacity 0.4s, box-shadow 0.3s;
 }
 .floating-cta.visible { transform: translateY(0); opacity: 1; }
+.floating-cta.nav-open { opacity: 0 !important; pointer-events: none; }
 .floating-cta:hover { box-shadow: 0 12px 48px rgba(232,160,180,0.5); }
 .floating-cta i { margin-right: 8px; }
 
@@ -160,8 +161,7 @@ nav {
   transition: background 0.4s, padding 0.4s, box-shadow 0.4s;
 }
 nav.scrolled {
-  background: rgba(253,246,240,0.85);
-  backdrop-filter: blur(20px);
+  background: rgba(253,246,240,0.97);
   padding: 14px 40px;
   box-shadow: 0 1px 20px rgba(214,164,164,0.08);
 }
@@ -1774,10 +1774,13 @@ new IntersectionObserver(entries => {
 
 // ── Mobile Nav ──
 function toggleNav() {
-  document.getElementById('navLinks').classList.toggle('open');
+  const navLinks = document.getElementById('navLinks');
+  navLinks.classList.toggle('open');
+  floatingCta.classList.toggle('nav-open', navLinks.classList.contains('open'));
 }
 function closeNav() {
   document.getElementById('navLinks').classList.remove('open');
+  floatingCta.classList.remove('nav-open');
 }
 
 // ── Flower Particles (skip on mobile) ──
